@@ -4,7 +4,7 @@ A mirrored and public repository with R code for reproducing the analyses in "As
 
 ## Folder Descriptions
 
-**/01-Data-Raw**: Raw data files that are read in in the "R/01-data-merge.R" script.
+**/01-Data-Raw**: Raw data files..
 
 **/02-Data-Wrangled**: Intermediate datasets created in several R scripts dedicated to merging and wrangling data files.
 
