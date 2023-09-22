@@ -633,9 +633,9 @@ colnames( fg.fg )
 
 # specify column indices for LQ variables, diet score variables, and food group variables
 keep.these <-  c( which( colnames( fg.fg ) %in% 
-                           c( "idnum", "Age.at.Diagnosis", "SEX", "RACE", "STAGE.B", "dissite", "smoker", "drinker",
+                           c( "idnum", "Age.at.Diagnosis", "SEX", "RACE", "STAGE.B", "dissite", "smoker", "drinker", "HISPANIC.OR.LATINO",
                               "HPV.STATUS", "ACE.OVERALL.SCORE", "BMI", "CALOR", "AHEI", "aMED", "DASH", "low.carb", "a.low.carb", 
-                              "v.low.carb", "F.TOTAL", "F.CITMLB", "F.OTHER", "F.JUICE", "V.TOTAL",
+                              "v.low.carb", "F.TOTAL", "F.CITMLB", "F.OTHER", "F.JUICE", "V.TOTAL", 
                               "V.DRKGR", "V.REDOR.TOMATO", "V.REDOR.TOTAL", "V.STARCHY.TOTAL", "V.STARCHY.POTATO",
                               "V.STARCHY.OTHER", "V.OTHER", "V.LEGUMES", "PF.TOTAL", "PF.MPS.TOTAL",
                               "PF.MEAT", "PF.CUREMEAT", "PF.ORGAN", "PF.POULT", "PF.SEAFD", "PF.EGGS", "PF.SOY", "PF.NUTS",
@@ -715,6 +715,13 @@ dat.d %>%
 # recode categorical variables #
   mutate( race.binary = factor( ifelse( race == 1, 'Non-Hispanic White',
                                             ifelse( race!= 1, 'Other', NA ) ) ),
+          race.ethnicity = factor( ifelse( hispanic.or.latino == 1, "Hispanic/Latino" ,
+                                           ifelse( race == 1, 'Non-Hispanic White',
+                                                   ifelse( race == 2, "African American",
+                                                           ifelse( race == 3, "Asian",
+                                                                   ifelse( race == 4, "Native Hawaiian/Pacific Islander",
+                                                                           ifelse( race == 5, "American Indian/Eskimo/Aleutian",
+                                                                                   ifelse( race == 6, "Other", NA )))))))),
           stage.binary = factor( ifelse( stage.b %in% c( 0, 1, 2, 3 ), 'Stages 0-3',
                                              ifelse( stage.b %in% c( 4 ), 'Stage 4', NA ) ) ),
           sex = factor( ifelse( sex == 1, "Male", ifelse( sex == 2, "Female", NA ) ) ),
