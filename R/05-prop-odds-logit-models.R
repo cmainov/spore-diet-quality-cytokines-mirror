@@ -69,7 +69,9 @@ t.names.q3 <- paste0( indices.q3, ".trend" ) # trend variables for trend analysi
                 y = outcome.variables,
                 q.x =indices.q4,
                 trend = t.names.q4 )
-ggsave( "04-Figures-Tables/figure-1.tiff" )
+ggsave( "04-Figures-Tables/figure-1.tiff",
+        plot = analysis.q4$m.plot,
+        width = 9, height =  8 )
 
 
 

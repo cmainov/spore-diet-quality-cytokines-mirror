@@ -44,8 +44,8 @@ tnames.1 <- c( "Age", "Body Mass Index (kg/m^2)", "AHEI Index", "aMED Index", "D
                "Low Carbohydrate Index", "Animal-Based Low Carbohydrate Index", "Plant-Based Low Carbohydrate Index" )
 
 # categorical variables that will be used to generate the table
-these.2 <- c( "sex","race.binary", "hpv.status", "tum.site", "stage.binary", "ace.binary", "smoker", "drinker" )
-tnames.2 <- c( "Sex", "Race/Ethnicity", "HPV Status", "Tumor Site", "Tumor Stage", "ACE Comorbidity Score", "Smoking Status", "Drinking Status" )
+these.2 <- c( "sex","race.ethnicity", "hpv.status", "tum.site", "stage.binary", "ace.binary", "smoker", "drinker" )
+tnames.2 <- c( "Sex", "Race and Ethnicity", "HPV Status", "Tumor Site", "Tumor Stage", "ACE Comorbidity Score", "Smoking Status", "Drinking Status" )
 
 ## for-loop to generate table (continuous variables only)
 # outer loop will loop through the three datasets (to generate three columns) and the inner loop
@@ -80,7 +80,7 @@ tnames.2 <- c( "Sex", "Race/Ethnicity", "HPV Status", "Tumor Site", "Tumor Stage
 
 
 # merge as rows and reorder rows for final presentation
-t.1 <- rbind( d.in, d.in.2 )[ c( 1, 9:11, 12:14, 2, 19:25, 15:18, 26:36, 3:8 ), ]
+t.1 <- rbind( d.in, d.in.2 )[ c( 1, 9:11, 12:17, 2, 22:28, 18:21, 29:39, 3:8 ), ]
 
 
 # polish significant digits
@@ -179,7 +179,7 @@ final.bind.cat <- do.call( "cbind", t.out.2.cat )[ , -c( 3, 5, 7, 9, 11, 13, 15,
 ### Put Together Final Table 2 ###
 # ---------------------------------------------------------------------------------------------------------------------------------------------------------
 
-t.2 <- bind_rows( final.bind, final.bind.cat )[ c( 1, 9:11, 12:14, 2, 19:25, 15:18, 26:36, 3:8 ), ] # reorder rows for final presentation
+t.2 <- bind_rows( final.bind, final.bind.cat )[ c( 1, 9:11, 12:17, 2, 22:28, 18:21, 29:39, 3:8 ), ] # reorder rows for final presentation
 
 
 
