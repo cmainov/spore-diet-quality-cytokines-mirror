@@ -293,7 +293,7 @@ energy_residual <- function( dat, x, calories, overwrite = "no" ){
   
   # loop and bind residuals for all "x" variables
   dat.list<- list()
-  for( i in 1: length( indices) ) {
+  for( i in 1: length( x) ) {
     
     h <- residual_bind( exp = x[i], dat.f = dat, cal = calories ) 
     
@@ -306,7 +306,7 @@ energy_residual <- function( dat, x, calories, overwrite = "no" ){
     else if( overwrite == "yes" ){
       
       dat.list[[i]] <- h %>%
-        rename( !!paste0( indices[i] ) := x.adjusted )
+        rename( !!paste0( x[i] ) := x.adjusted )
     }
     
   }
@@ -319,7 +319,7 @@ energy_residual <- function( dat, x, calories, overwrite = "no" ){
   
   else if( overwrite == "yes" ){
     dat <- dat %>% mutate( rowid = rownames( dat ) ) %>%  # create a rowid column for merge
-      select (- indices ) # remove old old columns of the x variables if they are to be overwritten
+      select (- x ) # remove old old columns of the x variables if they are to be overwritten
   }
   
   out.dat <- dat.list %>% reduce( inner_join, by = "rowid" ) %>%  # inner_join all elements of the list
